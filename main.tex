@@ -1,0 +1,141 @@
+\documentclass[12pt]{report}
+\usepackage{config}
+\usepackage{mathptmx}    
+\usepackage{graphicx}         
+\usepackage{url}           
+\usepackage{verbatim}           
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage{setspace}
+%%Depending on framework importing hyperref may result in errors
+\usepackage{hyperref}
+%%Configuration of Chapter titles
+\usepackage[pagestyles]{titlesec}
+\titleformat{\chapter}[block]{\normalfont\bfseries\Large}{\thechapter.\space\space\space}{0pt}{\Large}
+\titlespacing*{\chapter}{0pt}{-40pt}{5pt}
+\titleformat{\section}[block]{\normalfont\bfseries\large}{\thesection\space\space\space}{0pt}{\large}
+\newpagestyle{normalpage}
+{
+%%Optional headrules, experimental
+%%\headrule
+%%\sethead[\chaptertitle][][]{\chaptertitle}{}{}
+\setfoot[][][\thepage]{}{}{\thepage}
+}
+\pagestyle{normalpage}
+\newpagestyle{chapterpage}
+{
+\sethead[][][]{}{}{}
+\setfoot[][][\thepage]{}{}{\thepage}
+}
+%%Fix for chapter title commands
+%%Hiding Hyperlink outlines
+\usepackage{etoolbox}
+\patchcmd{\chapter}{plain}{chapterpage}{}{}
+\hypersetup{hidelinks}
+%%Package for code snippits
+\usepackage{listings}
+%%Configuration of code snippit colors/language etc.
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=0mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%%Configuration of subsubsubsections
+\titleclass{\subsubsubsection}{straight}[\subsection]
+%%Adding counters for fixed section numbering
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%% Fix for paragraph page breaks
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+
+%%Configuration of table of contents
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{4pt}
+
+%%Use this to see text borders, for bugfixing only
+%%\usepackage{showframe}
+%%Adding additional control over paragraph line/page skips
+\usepackage{parskip}
+%%Configuration of bibliography backend
+\usepackage[backend=biber, bibstyle=authoryear, citestyle=authoryear, maxcitenames=3, maxbibnames=5, sorting=nyt]{biblatex}
+\addbibresource{sources.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start of the document.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\doublespacing{}
+
+\sloppy
+
+\input{titlepage.tex}
+
+\singlespacing{}
+
+\tableofcontents{}
+
+\onehalfspacing{}
+
+\input{chapters/chapter1.tex}
+
+\input{chapters/chapter2.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% sources
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\bibliographystyle{plainnat}
+%%\bibliography{example}
+
+\input{Literaturverzeichnis.tex}
+
+\input{Anhang.tex}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The end.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
