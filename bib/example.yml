@@ -1,0 +1,21 @@
+bible:
+  type: Book
+  title: Computer Networks
+  author: 
+    - Tanenbaum, Andrew
+    - Wetherall, David
+  edition: 5
+  page-total: 808
+  date: 2013
+  publisher: Pearson
+  location: Harlow, Unitd Kingdom
+  serial-number:
+    isbn: "978-1-292-37401-7"
+
+ccc:
+  type: Web
+  title: CCC | Startseite
+  author: Chaos Computer Club
+  url: 
+    value: https://www.ccc.de/
+    date: 2023-12-20
