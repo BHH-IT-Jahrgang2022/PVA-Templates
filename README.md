@@ -1,7 +1,6 @@
 # PVA-Templates
 
-Check branches for the different templates
+This template is a typst template with an in detail guide to use it. You can find all the information in the README.typ file.
 
-Currently available are templates for LaTeX and Typst
-
-Coming soon are different templates for both German and English
+Please note: the standard language of the tempate outcome is German, although the guide and files are written in English/ with English comment.
+The places to change the language are highlighted with comments.
